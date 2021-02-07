@@ -1,6 +1,4 @@
-import { BackendApi } from "./com/scalepoint/sample/BackendApi";
-import { View } from "./com/scalepoint/sample/view/View";
-import { Controller } from "./com/scalepoint/sample/Controller";
+import { Controller } from "./com/company/sample/Controller";
 
 export class MainTsClass {
 
