@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "module": "AMD",
+        "target": "ES5",
+        "lib": [
+            "es2015",
+            "DOM"
+        ],
+        "outFile": "dist/bundle.js",
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}

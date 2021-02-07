@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
+    <script src="dist/bundle.js"></script>
+    <script>
+        var mainClass;
+
+        function init() {
+            requirejs(["root"], function (main) {
+                mainClass = new main.MainTsClass(
+                    "https://jsonplaceholder.typicode.com",
+                    document.getElementById("result"),
+                    document.getElementById("logger")
+                );
+                start();
+            });
+
+
+        }
+        function start() {
+            mainClass.showListOfTodos();
+        }
+
+    </script>
+</head>
+
+<body onLoad="init()">
+
+    <h1>Header</h1>
+    <div id="logger"></div> 
+
+    <div id="result"></div>
+</body>
+
+</html>
