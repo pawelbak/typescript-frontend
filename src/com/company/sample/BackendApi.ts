@@ -1,4 +1,5 @@
-import { Todo } from "./models/Todo";
+import { LossImportResponse } from "./models/LossImportResponse";
+import { PseudoCategoryGroupsResponse } from "./models/PseudoCategory";
 
 export class BackendApi {
     private backendUrl: string;
@@ -13,11 +14,17 @@ export class BackendApi {
         return body;
     }
 
+    async fetchLossImportData() {
+        const data = await this.httpCall<LossImportResponse>(
+            this.backendUrl + "/lossImportData"
+        );
+        return data;
+    }
 
 
-    async fetchData() {
-        const data = await this.httpCall<Todo[]>(
-            this.backendUrl + "/todos"
+    async fetchPseudoCategoryData() {
+        const data = await this.httpCall<PseudoCategoryGroupsResponse>(
+            this.backendUrl + "/pseudoCategoryGroups"
         );
         return data;
     }

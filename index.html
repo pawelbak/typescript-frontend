@@ -9,7 +9,7 @@
         function init() {
             requirejs(["root"], function (main) {
                 mainClass = new main.MainTsClass(
-                    "https://jsonplaceholder.typicode.com",
+                    "http://localhost:3335/lossImport",
                     document.getElementById("result"),
                     document.getElementById("logger")
                 );
@@ -27,7 +27,7 @@
 
 <body onLoad="init()">
 
-    <h1>Header</h1>
+    <h1>Loss Import</h1>
     <div id="logger"></div> 
 
     <div id="result"></div>

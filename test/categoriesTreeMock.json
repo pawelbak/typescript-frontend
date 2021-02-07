@@ -1,0 +1,40 @@
+{
+    "pseudoCategoryGroups": [
+      {
+        "id": 1,
+        "name": "Bikes",
+        "categories": [
+          {
+            "id": 101,
+            "name": "Standard Bikes"
+          },
+          {
+            "id": 102,
+            "name": "Cargo Bikes"
+          },
+          {
+            "id": 103,
+            "name": "Sport Bikes"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Jewellery",
+        "categories": [
+          {
+            "id": 201,
+            "name": "Rings"
+          },
+          {
+            "id": 202,
+            "name": "Necklaces"
+          },
+          {
+            "id": 203,
+            "name": "Diamonds"
+          }
+        ]
+      }
+    ]
+  }

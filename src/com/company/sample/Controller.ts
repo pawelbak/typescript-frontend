@@ -1,13 +1,15 @@
-import { Todo } from "./models/Todo";
 import { BackendApi } from "./BackendApi";
 import { View } from "./view/View";
+import { LossImportData } from "./models/LossImportResponse";
+import { PseudoCategoryGroup } from "./models/PseudoCategory";
 
 
 export class Controller {
-    private backendApi: BackendApi
-    private view: View
+    private backendApi: BackendApi;
+    private view: View;
 
-    private listOfTodos: Todo[]
+    private lossImportLines: LossImportData[];
+    private categoriesTree: PseudoCategoryGroup[];
 
     constructor(baseUrl: string,
         resultDiv: HTMLElement,
@@ -17,12 +19,21 @@ export class Controller {
     }
 
     async startApp() {
-        this.listOfTodos = await this.backendApi.fetchData();
-        this.view.render(this.listOfTodos);
+        this.view.render();
     }
 
-    onRowButtonClicked(row: any) {
-        this.view.logMessage(`message:${row.title}`);
-        console.log(row);
+    onCategoryGroupChange(lossLine: LossImportData) {
+        this.view.logMessage(`category changed for line: ${lossLine.description}`);
+    }
+
+    async onLoadLossDataClicked() {
+        let lossImportResponse = await this.backendApi.fetchLossImportData();
+        this.lossImportLines = lossImportResponse.lines;
+        console.log(JSON.stringify(this.lossImportLines));
+        let categoriesTreeResponse = await this.backendApi.fetchPseudoCategoryData();
+        this.categoriesTree = categoriesTreeResponse.pseudoCategoryGroups;
+        console.log(JSON.stringify(this.categoriesTree));
+
+        this.view.renderLossTable(this.lossImportLines, this.categoriesTree);
     }
 }
