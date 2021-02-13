@@ -46,7 +46,7 @@ export default class PseudoCategoryService {
         throw new Error(`Invalid category - not found in categories tree: ${categoryId}`);
     }
 
-    getCategoryGroups(): PseudoCategory[] {
+    getCategoryGroups(): PseudoCategoryGroup[] {
         return this.pseudoCategoryTree;
     }
 

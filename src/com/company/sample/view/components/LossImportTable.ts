@@ -1,5 +1,6 @@
 import Controller from "../../Controller";
 import { LossImportData } from "../../models/LossImportResponse";
+import { PseudoCategoryGroup } from "../../models/PseudoCategoryGroupsResponse";
 import PseudoCategoryService from "../../PseudoCategoryService";
 
 export default class LossImportTable {
@@ -70,16 +71,9 @@ export default class LossImportTable {
             let categoryGroupName = this.pseudoCategoryService.findCategoryGroupName(lossLine.categoryGroup);
             let categoryName = this.pseudoCategoryService.findCategoryName(lossLine.category);
 
-
             return document.createTextNode(categoryGroupName + ' - ' + categoryName);
         } else {
-            let select1 = document.createElement('select');
-            this.pseudoCategoryService.getCategoryGroups().forEach(cg => {
-                let optionElem = document.createElement('option');
-                optionElem.value = '' + cg.id;
-                optionElem.text = cg.name;
-                select1.appendChild(optionElem);
-            });
+            let select1 = this.prepareHTMLSelect(this.prepareListOfOptionsForCategoryGroup(this.pseudoCategoryService.getCategoryGroups()));
             select1.addEventListener("change", e => this.controller.onCategoryGroupChange(lossLine))
             let select2 = document.createElement('select');
             let wrapper = document.createElement('div');
@@ -87,6 +81,27 @@ export default class LossImportTable {
             wrapper.appendChild(select2);
             return wrapper;
         }
+    }
+
+    private prepareListOfOptionsForCategoryGroup(categoryGroups: PseudoCategoryGroup[]): HTMLOptionElement[] {
+        let options: HTMLOptionElement[] = [];
+        options.push(this.prepareHTMLOption('', ''));
+        categoryGroups.forEach(cg => options.push(this.prepareHTMLOption(cg.id.toString(), cg.name)));
+        return options;
+    }
+
+
+    private prepareHTMLOption(value: string, text: string): HTMLOptionElement {
+        let optionElem = document.createElement('option');
+        optionElem.value = value;
+        optionElem.text = text;
+        return optionElem;
+    }
+
+    private prepareHTMLSelect(options: HTMLOptionElement[]) {
+        let select1 = document.createElement('select');
+        options.forEach(o => select1.appendChild(o));
+        return select1;
     }
 
 

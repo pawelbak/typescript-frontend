@@ -22,7 +22,7 @@ export default class Controller {
     }
 
     onCategoryGroupChange(lossLine: LossImportData) {
-        this.view.logMessage(`category changed for line: ${lossLine.description}`);
+        this.view.logMessage(`category changed for line: ${lossLine.description}.`);
     }
 
     onLoadLossDataClicked(text: any) {
