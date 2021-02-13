@@ -1,5 +1,5 @@
 import { LossImportResponse } from "./models/LossImportResponse";
-import { PseudoCategoryGroupsResponse } from "./models/PseudoCategory";
+import { PseudoCategoryGroupsResponse } from "./models/PseudoCategoryGroupsResponse";
 
 export class BackendApi {
     private backendUrl: string;
